@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Website</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-black text-white w-full min-h-screen overflow-x-hidden font-['Poppins',_sans-serif]">
+
+    <!-- Nav -->
+    <header class="fixed top-0 left-0 w-full px-[9%] py-[10px] bg-black flex justify-between items-center z-[100] h-[60px] shadow-lg">
+        <a href="#" class="logo text-3xl text-[#b74b4b] font-extrabold cursor-pointer transition-transform duration-500 ease-in-out hover:scale-110">Sikoteng1</a>
+        <nav id="mainNav" class="hidden lg:flex lg:relative lg:w-auto lg:bg-transparent lg:border-none lg:top-auto lg:right-auto lg:p-0 
+                        absolute top-[60px] right-0 w-[40%] border-l-[3px] border-b-[3px] border-[#b74b4b] rounded-bl-[32px] p-[10px] bg-[#161616] border-t border-black/10">
+            <a href="#" class="active nav-link text-lg text-white ml-0 lg:ml-10 font-medium transition-colors duration-400 ease-in-out border-b-[3px] border-transparent hover:text-[#b74b4b] hover:border-b-[3px] hover:border-[#b74b4b] lg:[&.active]:text-[#b74b4b] lg:[&.active]:border-b-[3px] lg:[&.active]:border-[#b74b4b] block lg:inline my-[15px] lg:my-0 text-xl lg:text-lg"> Home</a>
+            <!-- <a href="#services" class="nav-link text-lg text-white ml-0 lg:ml-10 font-medium transition-colors duration-400 ease-in-out border-b-[3px] border-transparent hover:text-[#b74b4b] hover:border-b-[3px] hover:border-[#b74b4b] block lg:inline my-[15px] lg:my-0 text-xl lg:text-lg"> Services</a> -->
+            <a href="#skills" class="nav-link text-lg text-white ml-0 lg:ml-10 font-medium transition-colors duration-400 ease-in-out border-b-[3px] border-transparent hover:text-[#b74b4b] hover:border-b-[3px] hover:border-[#b74b4b] block lg:inline my-[15px] lg:my-0 text-xl lg:text-lg"> Skills</a>
+            <a href="#education" class="nav-link text-lg text-white ml-0 lg:ml-10 font-medium transition-colors duration-400 ease-in-out border-b-[3px] border-transparent hover:text-[#b74b4b] hover:border-b-[3px] hover:border-[#b74b4b] block lg:inline my-[15px] lg:my-0 text-xl lg:text-lg"> Education</a>
+            <a href="#experience" class="nav-link text-lg text-white ml-0 lg:ml-10 font-medium transition-colors duration-400 ease-in-out border-b-[3px] border-transparent hover:text-[#b74b4b] hover:border-b-[3px] hover:border-[#b74b4b] block lg:inline my-[15px] lg:my-0 text-xl lg:text-lg"> Experience</a>
+            <a href="#contact" class="nav-link text-lg text-white ml-0 lg:ml-10 font-medium transition-colors duration-400 ease-in-out border-b-[3px] border-transparent hover:text-[#b74b4b] hover:border-b-[3px] hover:border-[#b74b4b] block lg:inline my-[15px] lg:my-0 text-xl lg:text-lg"> Contact</a>
+        </nav>
+        <button id="menuToggler" class="lg:hidden text-2xl text-white focus:outline-none">
+            <i class="fas fa-bars"></i>
+        </button>
+    </header>
+
+    <!-- Hero -->
+    <section id="home" class="home min-h-screen py-[50px] px-[9%] flex justify-center items-center gap-20 bg-black max-lg:gap-10 max-lg:flex-col max-lg:my-[50px] max-lg:mx-[20px] lg:max-xl:gap-10 pt-[80px] lg:pt-[50px]">
+        <div class="hero-img" >
+            <img src="assets/profil.jpeg" alt="Siko's Image" 
+                 class="relative w-[32vw]  cursor-pointer transition-all duration-200 ease-linear max-lg:w-[70vw] max-lg:mt-[40px] hover:text-[18px] hover:font-medium">
+        </div>
+        <div class="home-content order-1 lg:order-2 text-center lg:text-left">
+            <h1 class="text-[60px] font-bold leading-[1.3] max-lg:text-[50px]">Hi, It's <span class="text-[#b74b4b]">Siko</span></h1>
+            <h3 class="typing-text text-[34px] font-semibold min-w-[280px] mb-[10px] max-lg:text-[25px]">I'm a <span id="typing-text-target" class="relative text-[#b74b4b]"></span></h3>
+            <p class="text-[17px]">From petting cats and tinkering with code to enjoying a smooth ride.<br>Get to know this Junior Programmer!</p>
+            <div class="social-icons mt-[30px] mb-[30px] text-center lg:text-left">
+                <a href="https://www.linkedin.com/in/naufal-alif-656442237/" target="_blank" class="inline-flex justify-center items-center w-10 h-10 bg-transparent border-2 border-[#b74b4b] text-xl rounded-full mr-[15px] transition-all duration-300 ease-in-out text-[#b74b4b] hover:text-black hover:scale-125 hover:-translate-y-[5px] hover:bg-[#b74b4b] hover:shadow-[0_0_25px_#b74b4b]"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="https://github.com/sikoteng1" target="_blank" class="inline-flex justify-center items-center w-10 h-10 bg-transparent border-2 border-[#b74b4b] text-xl rounded-full mr-[15px] transition-all duration-300 ease-in-out text-[#b74b4b] hover:text-black hover:scale-125 hover:-translate-y-[5px] hover:bg-[#b74b4b] hover:shadow-[0_0_25px_#b74b4b]"><i class="fa-brands fa-github"></i></a>
+                <a href="https://x.com/sikoteng1" target="_blank" class="inline-flex justify-center items-center w-10 h-10 bg-transparent border-2 border-[#b74b4b] text-xl rounded-full mr-[15px] transition-all duration-300 ease-in-out text-[#b74b4b] hover:text-black hover:scale-125 hover:-translate-y-[5px] hover:bg-[#b74b4b] hover:shadow-[0_0_25px_#b74b4b]"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="https://www.instagram.com/sikoteng1?igsh=YzJ1b2pkOXppajgz" target="_blank" class="inline-flex justify-center items-center w-10 h-10 bg-transparent border-2 border-[#b74b4b] text-xl rounded-full mr-[15px] transition-all duration-300 ease-in-out text-[#b74b4b] hover:text-black hover:scale-125 hover:-translate-y-[5px] hover:bg-[#b74b4b] hover:shadow-[0_0_25px_#b74b4b]"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://wa.me/62859106955827" target="_blank" class="inline-flex justify-center items-center w-10 h-10 bg-transparent border-2 border-[#b74b4b] text-xl rounded-full transition-all duration-300 ease-in-out text-[#b74b4b] hover:text-black hover:scale-125 hover:-translate-y-[5px] hover:bg-[#b74b4b] hover:shadow-[0_0_25px_#b74b4b]"><i class="fa-brands fa-whatsapp"></i></a>
+            </div>
+            <a href="#contact" class="btn inline-block py-[10px] px-[28px] bg-black rounded-[40px] text-base text-[#b74b4b] tracking-[3px] font-semibold border-2 border-[#b74b4b] transition-all duration-300 ease-in-out cursor-pointer hover:scale-[1.03] hover:bg-[#b74b4b] hover:text-black hover:shadow-[0_0_25px_#b74b4b]">Hire me</a>
+        </div>
+    </section>
+    
+    <!-- Services -->
+    <!-- <section id="services" class="min-h-screen py-[50px] px-[9%] bg-stone-900 pt-[80px] lg:pt-[50px]">
+        <h2 class="text-4xl font-bold text-center text-[#b74b4b] mb-12">Services</h2>
+    </section> -->
+
+    <!-- Skills -->
+    <section id="skills" class="py-[100px] px-[9%] bg-black pt-[80px] lg:pt-[50px] text-center">
+        <h2 class="text-4xl font-bold text-center text-[#b74b4b] mb-16">Skills</h2>
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-12 items-start">
+            <div class="flex flex-col items-center">
+                <i class="fab fa-html5 text-7xl text-orange-500 mb-3"></i>
+                <h3 class="text-xl font-semibold text-white">HTML</h3>
+                <p class="text-sm text-gray-400">Junior</p>
+            </div>
+            <div class="flex flex-col items-center">
+                <i class="fab fa-laravel text-7xl text-red-500 mb-3"></i>
+                <h3 class="text-xl font-semibold text-white">Laravel</h3>
+                <p class="text-sm text-gray-400">Junior</p>
+            </div>
+            <div class="flex flex-col items-center">
+                <i class="fa-brands fa-dart-lang text-7xl text-blue-500 mb-3"></i>
+                <h3 class="text-xl font-semibold text-white">Dart</h3>
+                <p class="text-sm text-gray-400">Junior</p>
+            </div>
+            <div class="flex flex-col items-center">
+                <i class="fa-brands fa-flutter text-7xl text-blue-300"></i>
+                <h3 class="text-xl font-semibold text-white">Flutter</h3>
+                <p class="text-sm text-gray-400">Junior</p>
+            </div>
+            <div class="flex flex-col items-center col-span-2 sm:col-span-1 lg:col-span-1 mx-auto">
+                <i class="fab fa-php text-7xl text-indigo-400 mb-3"></i>
+                <h3 class="text-xl font-semibold text-white">PHP</h3>
+                <p class="text-sm text-gray-400">Junior</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education -->
+    <section id="education" class="min-h-screen py-[50px] px-[10%] bg-stone-900 pt-[80px] lg:pt-[50px]">
+        <h2 class="text-4xl font-bold text-center text-[#b74b4b] mb-16">Education</h2>
+        <div class="max-w-3xl mx-auto">
+            <div class="relative sm:pl-0 group">
+                <div class="hidden sm:block absolute inset-0 w-0.5 bg-[#b74b4b] left-1/2 transform -translate-x-1/2 group-hover:bg-red-400 transition-colors duration-300"></div>
+                
+                <div class="mb-12 sm:mb-16 flex flex-col sm:flex-row items-center">
+                    <div class="sm:w-1/2 sm:pr-8 order-1 sm:order-none">
+                        <div class="p-6 bg-black rounded-lg shadow-lg hover:shadow-[#b74b4b]/50 transition-shadow duration-300">
+                            <h3 class="text-2xl font-semibold text-[#b74b4b] mb-1">Junior High School</h3>
+                            <p class="text-md text-gray-300">2017 - 2020</p>
+                        </div>
+                    </div>
+                    <div class="hidden sm:flex sm:w-auto order-1 sm:order-none mx-auto items-center justify-center">
+                        <div class="w-8 h-8 bg-[#b74b4b] rounded-full border-4 border-stone-900 group-hover:bg-red-400 transition-colors duration-300"></div>
+                    </div>
+                    <div class="sm:w-1/2 sm:pl-8 order-1 sm:order-none"></div>
+                </div>
+
+                <div class="mb-12 sm:mb-16 flex flex-col sm:flex-row items-center">
+                    <div class="sm:w-1/2 sm:pl-8 sm:order-first order-1 sm:pr-0"></div>
+                     <div class="hidden sm:flex sm:w-auto order-1 sm:order-none mx-auto items-center justify-center">
+                        <div class="w-8 h-8 bg-[#b74b4b] rounded-full border-4 border-stone-900 group-hover:bg-red-400 transition-colors duration-300"></div>
+                    </div>
+                    <div class="sm:w-1/2 sm:pr-8 sm:text-right sm:order-last order-1 sm:pr-0 sm:text-right">
+                         <div class="p-6 bg-black rounded-lg shadow-lg hover:shadow-[#b74b4b]/50 transition-shadow duration-300">
+                            <h3 class="text-2xl font-semibold text-[#b74b4b] mb-1">Senior High School</h3>
+                            <p class="text-md text-gray-300">2020 - 2023</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-12 sm:mb-16 flex flex-col sm:flex-row items-center">
+                    <div class="sm:w-1/2 sm:pr-8 order-1 sm:order-none">
+                        <div class="p-6 bg-black rounded-lg shadow-lg hover:shadow-[#b74b4b]/50 transition-shadow duration-300">
+                            <h3 class="text-2xl font-semibold text-[#b74b4b] mb-1">College</h3>
+                            <p class="text-md text-gray-300">2024 - Now</p>
+                        </div>
+                    </div>
+                     <div class="hidden sm:flex sm:w-auto order-1 sm:order-none mx-auto items-center justify-center">
+                        <div class="w-8 h-8 bg-[#b74b4b] rounded-full border-4 border-stone-900 group-hover:bg-red-400 transition-colors duration-300"></div>
+                    </div>
+                    <div class="sm:w-1/2 sm:pl-8 order-1 sm:order-none"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Experience -->
+    <section id="experience" class="min-h-screen py-[50px] px-[9%] bg-black pt-[80px] lg:pt-[50px]">
+        <h2 class="text-4xl font-bold text-center text-[#b74b4b] mb-16">Experience</h2>
+        <div class="max-w-2xl mx-auto p-8 bg-stone-900 rounded-xl shadow-2xl hover:shadow-[#b74b4b]/40 transition-shadow duration-300">
+            <div class="flex items-start">
+                <div class="flex-shrink-0">
+                    <span class="inline-flex items-center justify-center h-12 w-12 rounded-full bg-[#b74b4b] text-white">
+                        <i class="fas fa-briefcase text-xl"></i>
+                    </span>
+                </div>
+                <div class="ml-3">
+                    <h3 class="text-2xl font-semibold text-white mb-1">Administration</h3>
+                    <p class="text-md text-[#b74b4b] font-medium mb-1">One Company</p>
+                    <p class="text-sm text-gray-400 mb-2">Duration: 1 Month</p>
+                    </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <!-- <section id="contact" class="min-h-screen py-[50px] px-[9%] bg-stone-900 text-[19.5px] tracking-[2px] font-[490] text-[#b74b4b] pt-[80px] lg:pt-[50px]">
+        <h2 class="text-4xl font-bold text-center text-[#b74b4b] mb-12">Contact</h2>
+        <div class="max-w-lg mx-auto text-center">
+            <div class="bg-black p-2 sm:p-8 rounded-lg shadow-xl hover:shadow-[#b74b4b]/50 transition-shadow duration-300">
+                <h3 class="text-2xl font-semibold text-white mb-6">Get in Touch!</h3>
+                <div class="detail-contact space-y-6">
+                    <div href="https://api.whatsapp.com/send?phone=62859106955827" class="wa flex items-center justify-center group"> 
+                        <a href="https://api.whatsapp.com/send?phone=62859106955827" target="_blank" class="text-[#b74b4b] text-3xl group-hover:text-green-500 transition-colors duration-300"><i class="fa-brands fa-whatsapp"></i></a>
+                        <p class="text-white text-lg ml-3 group-hover:text-gray-300 transition-colors duration-300"> <span class="hidden sm:inline">:</span> +62859-1069-55827</p>
+                    </div>
+                    <div class="ig flex items-center justify-center group"> 
+                        <a href="https://www.instagram.com/sikoteng1" target="_blank" class="text-[#b74b4b] text-3xl group-hover:text-pink-500 transition-colors duration-300"><i class="fa-brands fa-instagram"></i></a> 
+                        <p class="text-white text-lg ml-3 group-hover:text-gray-300 transition-colors duration-300"> <span class="hidden sm:inline">:</span> @sikoteng1</p>
+                    </div>
+                     <div class="email flex items-center justify-center group"> 
+                        <a href="mailto:sikoteng1@gmail.com" class="text-[#b74b4b] text-3xl group-hover:text-red-400 transition-colors duration-300"><i class="fas fa-envelope"></i></a> 
+                        <p class="text-white text-lg ml-3 group-hover:text-gray-300 transition-colors duration-300"> <span class="hidden sm:inline">:</span> sikoteng1@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <section id="contact" class="min-h-screen py-[50px] px-[9%] bg-stone-900 text-[19.5px] tracking-[2px] font-[490] text-[#b74b4b] pt-[80px] lg:pt-[50px]">
+        <h2 class="text-4xl font-bold text-center text-[#b74b4b] mb-12">Contact</h2>
+        <div class="max-w-lg mx-auto text-center">
+            <div class="bg-black p-2 sm:p-8 rounded-lg shadow-xl hover:shadow-[#b74b4b]/50 transition-shadow duration-300">
+                <h3 class="text-2xl font-semibold text-white mb-6">Get in Touch!</h3>
+
+                <form name="contact" method="POST" data-netlify="true" class="space-y-6 text-left">
+                    <div>
+                        <label for="name" class="block text-white text-lg font-medium mb-2">Name:</label>
+                        <input type="text" id="name" name="name" class="w-full p-3 rounded bg-stone-800 text-white border border-[#b74b4b] focus:outline-none focus:border-red-400" required>
+                    </div>
+                    <div>
+                        <label for="email" class="block text-white text-lg font-medium mb-2">Email:</label>
+                        <input type="email" id="email" name="email" class="w-full p-3 rounded bg-stone-800 text-white border border-[#b74b4b] focus:outline-none focus:border-red-400" required>
+                    </div>
+                    <div>
+                        <label for="phone" class="block text-white text-lg font-medium mb-2">Phone Number:</label>
+                        <input type="number" id="phone" name="phone" class="w-full p-3 rounded bg-stone-800 text-white border border-[#b74b4b] focus:outline-none focus:border-red-400">
+                         </div>
+                    <div>
+                        <label for="message" class="block text-white text-lg font-medium mb-2">Message:</label>
+                        <textarea id="message" name="message" rows="6" class="w-full p-3 rounded bg-stone-800 text-white border border-[#b74b4b] focus:outline-none focus:border-red-400" required></textarea>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn inline-block py-3 px-8 bg-black rounded-[40px] text-base text-[#b74b4b] tracking-[3px] font-semibold border-2 border-[#b74b4b] transition-all duration-300 ease-in-out cursor-pointer hover:scale-[1.03] hover:bg-[#b74b4b] hover:text-black hover:shadow-[0_0_25px_#b74b4b]">
+                            Send Message
+                        </button>
+                    </div>
+                </form>
+                </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+    <script src="https://kit.fontawesome.com/0e5d92e262.js" crossorigin="anonymous"></script>
+</body>
+</html>
