@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Google Sheets Connection</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            border-bottom: 3px solid #d4af37;
+            padding-bottom: 10px;
+        }
+        .input-group {
+            margin: 20px 0;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #555;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+        input:focus {
+            outline: none;
+            border-color: #d4af37;
+        }
+        button {
+            background: #d4af37;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background: #b8941f;
+        }
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        .result {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 5px;
+            border-left: 4px solid #d4af37;
+        }
+        .success {
+            color: #28a745;
+            font-weight: bold;
+        }
+        .error {
+            color: #dc3545;
+            font-weight: bold;
+        }
+        .project-item {
+            background: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        .project-title {
+            font-weight: bold;
+            color: #333;
+            font-size: 18px;
+        }
+        .project-meta {
+            color: #666;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        .badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 12px;
+            margin-right: 5px;
+        }
+        .badge-highlight {
+            background: #d4af37;
+            color: white;
+        }
+        .badge-other {
+            background: #6c757d;
+            color: white;
+        }
+        pre {
+            background: #f4f4f4;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 12px;
+        }
+        .warning {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Test Google Sheets Connection</h1>
+        
+        <div class="warning">
+            <strong>⚠️ Penting:</strong> Pastikan spreadsheet sudah di-set ke <strong>"Anyone with the link can view"</strong>
+        </div>
+
+        <div class="input-group">
+            <label for="spreadsheetId">Spreadsheet ID:</label>
+            <input type="text" id="spreadsheetId" value="1e7FC4R_R0ZNjE6Yf38nydB9eK6nuZ9whaxkrNuuyTus" placeholder="Paste Spreadsheet ID here">
+        </div>
+
+        <div class="input-group">
+            <label for="sheetName">Sheet Name:</label>
+            <input type="text" id="sheetName" value="Sheet1" placeholder="e.g., Sheet1">
+        </div>
+
+        <div class="input-group">
+            <label for="apiKey">Google API Key:</label>
+            <input type="text" id="apiKey" placeholder="Paste your Google API Key here">
+            <small style="color: #666; display: block; margin-top: 5px;">
+                Belum punya? Lihat <strong>GOOGLE_SHEETS_SETUP.md</strong>
+            </small>
+        </div>
+
+        <button onclick="testConnection()" id="testBtn">🚀 Test Connection</button>
+        <button onclick="clearResults()" style="background: #6c757d;">🗑️ Clear</button>
+
+        <div id="result"></div>
+    </div>
+
+    <script>
+        async function testConnection() {
+            const spreadsheetId = document.getElementById('spreadsheetId').value.trim();
+            const sheetName = document.getElementById('sheetName').value.trim();
+            const apiKey = document.getElementById('apiKey').value.trim();
+            const resultDiv = document.getElementById('result');
+            const testBtn = document.getElementById('testBtn');
+
+            if (!spreadsheetId || !sheetName || !apiKey) {
+                resultDiv.innerHTML = `
+                    <div class="result">
+                        <p class="error">❌ Error: Semua field harus diisi!</p>
+                    </div>
+                `;
+                return;
+            }
+
+            testBtn.disabled = true;
+            testBtn.textContent = '⏳ Testing...';
+
+            resultDiv.innerHTML = `
+                <div class="result">
+                    <p>🔄 Connecting to Google Sheets...</p>
+                </div>
+            `;
+
+            try {
+                const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${sheetName}?key=${apiKey}`;
+                
+                const response = await fetch(url);
+                const data = await response.json();
+
+                if (data.error) {
+                    throw new Error(data.error.message || 'Unknown error');
+                }
+
+                if (!data.values || data.values.length === 0) {
+                    resultDiv.innerHTML = `
+                        <div class="result">
+                            <p class="error">❌ Spreadsheet kosong atau tidak ada data!</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                const headers = data.values[0];
+                const rows = data.values.slice(1);
+
+                const projects = rows.map(row => {
+                    const project = {};
+                    headers.forEach((header, index) => {
+                        project[header.toLowerCase().trim()] = row[index] || '';
+                    });
+                    return project;
+                });
+
+                let html = `
+                    <div class="result">
+                        <p class="success">✅ Connection Successful!</p>
+                        <p><strong>Total Projects:</strong> ${projects.length}</p>
+                        <p><strong>Headers:</strong> ${headers.join(', ')}</p>
+                        
+                        <h3 style="margin-top: 20px;">📋 Projects Data:</h3>
+                `;
+
+                projects.forEach((project, index) => {
+                    const typeClass = project.type === 'highlight' ? 'badge-highlight' : 'badge-other';
+                    html += `
+                        <div class="project-item">
+                            <div class="project-title">
+                                ${index + 1}. ${project.title || 'Untitled'}
+                                <span class="badge ${typeClass}">${project.type || 'N/A'}</span>
+                            </div>
+                            <div class="project-meta">
+                                <strong>Category:</strong> ${project.category || 'N/A'} | 
+                                <strong>Date:</strong> ${project.date || 'N/A'} | 
+                                <strong>Icon:</strong> <i class="fas ${project.icon || 'fa-code'}"></i> ${project.icon || 'N/A'} | 
+                                <strong>Color:</strong> ${project.color || 'N/A'}
+                            </div>
+                            <div class="project-meta">
+                                <strong>Description:</strong> ${project.description || 'No description'}
+                            </div>
+                            <div class="project-meta">
+                                <strong>Link:</strong> <a href="${project.link}" target="_blank">${project.link || 'N/A'}</a>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                html += `
+                        <h3 style="margin-top: 20px;">📄 Raw JSON Data:</h3>
+                        <pre>${JSON.stringify(projects, null, 2)}</pre>
+                    </div>
+                `;
+
+                resultDiv.innerHTML = html;
+
+            } catch (error) {
+                console.error('Error:', error);
+                resultDiv.innerHTML = `
+                    <div class="result">
+                        <p class="error">❌ Error: ${error.message}</p>
+                        <p style="margin-top: 10px;"><strong>Possible causes:</strong></p>
+                        <ul>
+                            <li>API Key tidak valid atau belum diaktifkan</li>
+                            <li>Spreadsheet ID salah</li>
+                            <li>Sheet name tidak ditemukan</li>
+                            <li>Spreadsheet tidak di-set ke public</li>
+                            <li>Google Sheets API belum diaktifkan</li>
+                        </ul>
+                        <p style="margin-top: 10px;">Cek <strong>GOOGLE_SHEETS_SETUP.md</strong> untuk panduan lengkap.</p>
+                    </div>
+                `;
+            } finally {
+                testBtn.disabled = false;
+                testBtn.textContent = '🚀 Test Connection';
+            }
+        }
+
+        function clearResults() {
+            document.getElementById('result').innerHTML = '';
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedApiKey = localStorage.getItem('googleApiKey');
+            if (savedApiKey) {
+                document.getElementById('apiKey').value = savedApiKey;
+            }
+        });
+
+        document.getElementById('apiKey').addEventListener('change', (e) => {
+            localStorage.setItem('googleApiKey', e.target.value);
+        });
+    </script>
+</body>
+</html>
