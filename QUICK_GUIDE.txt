@@ -1,0 +1,172 @@
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                                                                              ║
+║   🚀 PANDUAN CEPAT: INTEGRASI GOOGLE SPREADSHEET KE PORTFOLIO WEBSITE       ║
+║                                                                              ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ ✅ SUDAH SELESAI (Otomatis oleh Kiro):                                      │
+├──────────────────────────────────────────────────────────────────────────────┤
+│  ✓ Code integrasi Google Sheets sudah ditambahkan ke index.html             │
+│  ✓ Fungsi fetch data dari spreadsheet sudah dibuat                          │
+│  ✓ Fungsi render dynamic projects sudah dibuat                              │
+│  ✓ Template CSV sudah dibuat (projects_template.csv)                        │
+│  ✓ Tool testing sudah dibuat (test_sheets_connection.html)                  │
+│  ✓ Dokumentasi lengkap sudah dibuat                                         │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ 📋 YANG PERLU KAMU LAKUKAN:                                                  │
+├──────────────────────────────────────────────────────────────────────────────┤
+│                                                                              │
+│  STEP 1: BUAT GOOGLE API KEY (5 menit)                                      │
+│  ────────────────────────────────────────────────────────────────────────   │
+│  1. Buka: https://console.cloud.google.com/                                 │
+│  2. Buat project baru (atau pilih yang sudah ada)                           │
+│  3. Pergi ke: APIs & Services > Library                                     │
+│  4. Cari dan aktifkan: "Google Sheets API"                                  │
+│  5. Pergi ke: APIs & Services > Credentials                                 │
+│  6. Klik: Create Credentials > API Key                                      │
+│  7. COPY API Key yang muncul                                                │
+│                                                                              │
+│  STEP 2: SETUP SPREADSHEET (2 menit)                                        │
+│  ────────────────────────────────────────────────────────────────────────   │
+│  1. Buka spreadsheet kamu:                                                  │
+│     https://docs.google.com/spreadsheets/d/                                 │
+│     1e7FC4R_R0ZNjE6Yf38nydB9eK6nuZ9whaxkrNuuyTus/edit                        │
+│                                                                              │
+│  2. Klik tombol "Share" (pojok kanan atas)                                  │
+│  3. Pilih: "Anyone with the link" > "Viewer"                                │
+│  4. Klik "Done"                                                              │
+│                                                                              │
+│  5. Buat struktur kolom di BARIS PERTAMA:                                   │
+│     ┌────────┬─────────────┬──────────┬──────┬──────┬───────┬──────┐       │
+│     │ title  │ description │ category │ date │ link │ color │ type │       │
+│     └────────┴─────────────┴──────────┴──────┴──────┴───────┴──────┘       │
+│                                                                              │
+│  6. Isi data projects mulai dari BARIS KEDUA                                │
+│     (Lihat contoh di projects_template.csv)                                 │
+│                                                                              │
+│  STEP 3: UPDATE CODE (1 menit)                                              │
+│  ────────────────────────────────────────────────────────────────────────   │
+│  1. Buka file: index.html                                                   │
+│  2. Cari baris sekitar 966-967 (Ctrl+F: "API_KEY")                          │
+│  3. Ganti:                                                                  │
+│     const API_KEY = 'AIzaSyDummyKeyPleaseReplaceWithYourOwnKey';            │
+│                                                                              │
+│     Dengan API Key kamu dari Step 1                                         │
+│                                                                              │
+│  4. (Opsional) Jika nama sheet bukan "Sheet1", ganti juga:                  │
+│     const SHEET_NAME = 'Sheet1';                                            │
+│                                                                              │
+│  5. Save file                                                               │
+│                                                                              │
+│  STEP 4: TEST CONNECTION (2 menit)                                          │
+│  ────────────────────────────────────────────────────────────────────────   │
+│  1. Buka file: test_sheets_connection.html di browser                       │
+│  2. Masukkan:                                                               │
+│     - Spreadsheet ID (sudah terisi otomatis)                                │
+│     - Sheet Name (default: Sheet1)                                          │
+│     - API Key (dari Step 1)                                                 │
+│  3. Klik "Test Connection"                                                  │
+│  4. Jika berhasil, akan muncul list projects dari spreadsheet              │
+│                                                                              │
+│  STEP 5: BUKA WEBSITE (1 menit)                                             │
+│  ────────────────────────────────────────────────────────────────────────   │
+│  1. Buka index.html di browser                                              │
+│  2. Scroll ke section "Projects"                                            │
+│  3. Projects seharusnya muncul dari spreadsheet!                            │
+│  4. Buka F12 Console untuk cek error (jika ada)                             │
+│                                                                              │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ 📊 CONTOH DATA SPREADSHEET:                                                  │
+├──────────────────────────────────────────────────────────────────────────────┤
+│                                                                              │
+│  BARIS 1 (Header):                                                           │
+│  title | description | category | date | link | color | type                │
+│                                                                              │
+│  BARIS 2 (Highlight Project):                                               │
+│  Hajj & Umroh CHWR | Landing page travel haji | Landing Page | Jun 2025 |   │
+│  https://www.cahayahatiwisatareligi.com/ | gold | highlight                 │
+│                                                                              │
+│  BARIS 3 (Other Project):                                                   │
+│  Booking Service | Website booking servis motor | Website | Dec 2024 |      │
+│  https://servismotor.sikoteng.my.id/ | purple | other                       │
+│                                                                              │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ 🎨 PILIHAN WARNA:                                                            │
+├──────────────────────────────────────────────────────────────────────────────┤
+│  purple  - Ungu (default)                                                   │
+│  gold    - Emas/Kuning                                                      │
+│  blue    - Biru                                                             │
+│  green   - Hijau                                                            │
+│  red     - Merah                                                            │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ 🔄 CARA UPDATE PROJECTS:                                                     │
+├──────────────────────────────────────────────────────────────────────────────┤
+│  1. Buka spreadsheet                                                         │
+│  2. Tambah/Edit/Hapus baris                                                  │
+│  3. Refresh website                                                          │
+│  4. Done! Tidak perlu edit HTML lagi! 🎉                                     │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ ⚠️ TROUBLESHOOTING:                                                          │
+├──────────────────────────────────────────────────────────────────────────────┤
+│                                                                              │
+│  ❌ Projects tidak muncul?                                                   │
+│     → Cek API Key sudah benar di index.html                                 │
+│     → Cek spreadsheet sudah public ("Anyone with link")                     │
+│     → Buka F12 Console, lihat error                                         │
+│     → Test dengan test_sheets_connection.html                               │
+│                                                                              │
+│  ❌ Error "API Key not valid"?                                               │
+│     → Pastikan Google Sheets API sudah enabled                              │
+│     → Coba buat API Key baru                                                │
+│     → Cek tidak ada spasi di API Key                                        │
+│                                                                              │
+│  ❌ Error "Unable to parse range"?                                           │
+│     → Cek nama sheet sudah benar (case-sensitive)                           │
+│     → Default: "Sheet1"                                                     │
+│                                                                              │
+│  ❌ Projects lama (static) masih muncul?                                     │
+│     → Website menggunakan fallback jika fetch gagal                         │
+│     → Pastikan tidak ada error di Console                                   │
+│     → Hard refresh: Ctrl + Shift + R                                        │
+│                                                                              │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ 📁 FILES YANG DIBUAT:                                                        │
+├──────────────────────────────────────────────────────────────────────────────┤
+│  ✓ index.html                    - Website utama (sudah terintegrasi)       │
+│  ✓ GOOGLE_SHEETS_SETUP.md        - Panduan lengkap setup                    │
+│  ✓ projects_template.csv         - Template data untuk import               │
+│  ✓ test_sheets_connection.html   - Tool untuk test koneksi                  │
+│  ✓ README_PROJECTS.md            - Quick reference                          │
+│  ✓ QUICK_GUIDE.txt               - Panduan visual (file ini)                │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ 💡 TIPS:                                                                     │
+├──────────────────────────────────────────────────────────────────────────────┤
+│  • Gunakan type "highlight" untuk max 2-4 projects penting                  │
+│  • Gunakan type "other" untuk projects lainnya                              │
+│  • Icon dan color bisa disesuaikan dengan tema project                      │
+│  • Spreadsheet bisa diakses dari mana saja untuk update                     │
+│  • Bisa share spreadsheet ke tim untuk kolaborasi                           │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                                                                              ║
+║  🎉 SELAMAT! Website kamu sekarang sudah terintegrasi dengan Google Sheets! ║
+║                                                                              ║
+║  Butuh bantuan? Baca: GOOGLE_SHEETS_SETUP.md                                ║
+║                                                                              ║
+╚══════════════════════════════════════════════════════════════════════════════╝
